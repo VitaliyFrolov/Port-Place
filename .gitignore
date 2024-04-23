@@ -1,15 +1,15 @@
 # See https://help.github.com/articles/ignoring-files/ for more 
 # dependencies
-frontend/node_modules
-frontend/.pnp
+client/node_modules
+client/.pnp
 .pnp.js
 .fleet
 
 # testing
-frontend/coverage
-frontend/README.md
-frontend/.eslintcache
-frontend/coverage
+client/coverage
+client/README.md
+client/.eslintcache
+client/coverage
 .swc
 
 # misc
