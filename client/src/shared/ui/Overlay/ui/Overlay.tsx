@@ -22,9 +22,11 @@ export const Overlay: FC<OverlayProps> = ({
 
     useEffect(() => {
         ref.current = document.querySelector<HTMLElement>(root)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const overlay: ReactElement | null = <div ref={background} style={{backgroundColor: `rgba(0, 0, 0, ${shading}%`}} className={styles.overlay} onClick={() => close()}> </div>;
+    const overlay: ReactElement | null = 
+        <div ref={background} style={{backgroundColor: `rgba(0, 0, 0, ${shading}%`}} className={styles.overlay} onClick={() => close()} />;
     scrollBlocker(active);
     useKeyPress("Escape", close);
 

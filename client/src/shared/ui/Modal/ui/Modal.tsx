@@ -22,6 +22,7 @@ export const Modal: FC<ModalProps> = (props) => {
 
     useEffect(() => {
         ref.current = document.querySelector<HTMLElement>(root)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const layout = (

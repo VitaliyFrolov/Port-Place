@@ -13,6 +13,7 @@ export const useKeyPress = (key: string, callBack: any): null => {
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [key, callBack]); 
 
     return null;

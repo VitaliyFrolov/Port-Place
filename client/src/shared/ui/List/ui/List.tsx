@@ -3,6 +3,7 @@ import cn from 'classnames';
 
 export interface ListProps<D> {
     data: D[];
+    // eslint-disable-next-line no-unused-vars
     template: (item: D) => React.ReactElement;
     className?: string;
     isLoading?: boolean;
