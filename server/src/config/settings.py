@@ -23,14 +23,17 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(" ")
 # ======================================================================================================================
 
 INSTALLED_APPS = [
+    # base
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "corsheaders",
-    "apps.core.apps.CoreConfig",
+    'django.contrib.postgres',
+    # third-party
+    "django_extensions",
+    # applications
 ]
 
 # ======================================================================================================================
@@ -51,7 +54,7 @@ MIDDLEWARE = [
 # ROOT URL SETTINGS
 # ======================================================================================================================
 
-ROOT_URLCONF = "config.urls"
+ROOT_URLCONF = "src.config.urls"
 
 # ======================================================================================================================
 # TEMPLATES SETTINGS
@@ -77,7 +80,7 @@ TEMPLATES = [
 # WSGI SETTINGS
 # ======================================================================================================================
 
-WSGI_APPLICATION = "config.wsgi.application"
+WSGI_APPLICATION = "src.config.wsgi.application"
 
 # ======================================================================================================================
 # DATABASE SETTINGS

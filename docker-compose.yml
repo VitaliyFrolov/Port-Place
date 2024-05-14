@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   next:
@@ -19,7 +19,7 @@ services:
     ports:
       - 8000:8000
     env_file:
-      - .env
+      - ./.env
     depends_on:
       - pgdb
 

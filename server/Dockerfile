@@ -1,23 +1,39 @@
 FROM python:3.12 as builder
 
+ENV \
+    # python:
+    PYTHONFAULTHANDLER=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONHASHSEED=random \
+    PYTHONDONTWRITEBYTECODE=1 \
+    # poetry:
+    POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_CREATE=false \
+    POETRY_CACHE_DIR='/var/cache/pypoetry' \
+    POETRY_HOME='/usr/local'
+
+RUN apt-get update && apt-get upgrade -y \
+    && apt-get install --no-install-recommends -y \
+    bash \
+    curl \
+    # Installing `poetry` package manager:
+    # https://github.com/python-poetry/poetry
+    && curl -sSL 'https://install.python-poetry.org' | python - \
+    && poetry --version \
+    # Cleaning cache:
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app/server
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+# Copy only requirements, to cache them in docker layer
+COPY ./poetry.lock ./pyproject.toml /app/server/
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends gcc
+# Project initialization:
+RUN --mount=type=cache,target=/var/cache/pypoetry \
+    poetry version \
+    # Install deps:
+    && poetry run pip install -U pip \
+    && poetry install --only main --no-interaction --no-ansi
 
-COPY ./requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt
-
-FROM python:3.12
-
-WORKDIR /app/server
-
-COPY --from=builder /app/wheels /wheels
-COPY --from=builder /app/server/requirements.txt .
-
-RUN pip install --no-cache /wheels/*
-
-COPY . .
+COPY . /app/server

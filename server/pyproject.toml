@@ -1,0 +1,136 @@
+[tool.poetry]
+name = "server"
+version = "0.1.0"
+description = ""
+authors = ["Anzor <magometov_a.z@mail.ru>"]
+readme = "README.md"
+packages = [{ include = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^5.0.6"
+django-stubs = {extras = ["compatible-mypy"], version = "^5.0.0"}
+django-extensions = "^3.2.3"
+python-dotenv = "^1.0.1"
+
+
+psycopg2 = "^2.9.9"
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.24.0"
+ruff = "^0.4.4"
+isort = "^5.13.2"
+mypy = "^1.10.0"
+black = "^24.4.2"
+django-types = "^0.19.1"
+pre-commit = "^3.7.0"
+dotenv-linter = "^0.5.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+dj = "manage:main"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.black]
+exclude = '''
+/(
+  | migrations
+  | .venv
+)/
+'''
+line_length = 120
+
+
+[tool.ruff]
+
+# 'flake8-bugbear' -> 'lint.flake8-bugbear'\n"
+# set of rules
+lint.select = [
+  "E",  # pycodestyle
+  "F",  # Pyflakes
+  "N",  # pep8-naming
+  "UP", # pyupgrade
+  "BLE", # flake8-blind-except
+  "B",   # flake8-bugbear
+  "A",   # flake8-builtins
+  "C4",  # flake8-comprehensions
+  "DTZ", # flake8-datetimez
+  "DJ",  # flake8-django
+  "EXE", # flake8-executable
+  "FA",  # flake8-future-annotations
+  "ISC", # flake8-implicit-str-concat
+  "G",   # flake8-logging-format
+  "INP", # flake8-logging-format
+  "PIE", # flake8-pie
+  "T20", # flake8-print
+  "PYI", # flake8-pyi
+  "PT",  # flake8-pyi
+  "Q",   # flake8-quotes
+  "SIM", # flake8-simplify
+  "TID", # flake8-tidy-imports
+  "INT", # flake8-gettext
+  "PTH", # flake8-use-pathlib
+  "FIX", # flake8-fixme
+  # Ruff-specific rules
+  "RUF008", # Do not use mutable default values for dataclass attributes
+  "RUF009", # Do not perform function call {name} in dataclass defaults
+  "RUF010", # Use explicit conversion flag
+  # NOTE: RUF011 has been remapped to B035
+  # "RUF011", # Dictionary comprehension uses static key: {key}
+  #  "RUF012",  # Mutable class attributes should be annotated with typing.ClassVar
+  "RUF013", # PEP 484 prohibits implicit Optional
+  "RUF015", # Prefer next({iterable}) over single element slice
+  "RUF016", # Slice in indexed access to type {value_type} uses type {index_type} instead of an integer.
+  "RUF100", # Unused noqa directive
+  "RUF200", # Failed to parse pyproject.toml
+  "FIX002", # Line contains TODO, consider resolving the issue
+]
+lint.ignore = [
+  "N806",   # Variable `UpperCase` in function should be lowercase
+  "B010",   # Do not call `setattr` with a constant attribute value
+  "A003",   # variable names that shadow builtins are not allowed
+  "SIM108", # Use ternary operator `var = valie if value else None` instead of `if`-`else`-block
+]
+
+fix = true
+line-length = 120
+target-version = "py312"
+extend-exclude = [".venv", "venv", "migrations"]
+
+[tool.mypy]
+python_version = "3.12"
+exclude = ["migrations"]
+warn_unused_configs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unreachable = true
+warn_no_return = true
+namespace_packages = true
+explicit_package_bases = true
+disallow_untyped_defs = true
+disallow_untyped_calls = false
+strict = true
+strict_equality = true
+plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
+
+[[tool.mypy.overrides]]
+module = ["django_extensions.db.models"]
+ignore_missing_imports = true
+
+[tool.django-stubs]
+django_settings_module = "src.config.settings"
+
+[tool.flake8]
+max-line-length = 120
+
+[tool.pylint.'pylint_options']
+disable = [
+    "C0114",  # Missing module docstring
+    "C0115",  # Missing class docstring
+    "C0116",  # Missing function or method docstring
+]
