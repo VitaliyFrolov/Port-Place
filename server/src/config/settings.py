@@ -1,10 +1,12 @@
 import os
-
 from pathlib import Path
 
+from django_stubs_ext import monkeypatch
 from dotenv import load_dotenv
 
+monkeypatch()
 load_dotenv()
+
 
 # ======================================================================================================================
 # BASE SETTINGS
@@ -14,9 +16,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = int(os.getenv("DEBUG"))
+DEBUG = int(os.getenv("DEBUG"))  # type: ignore
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS: list[str] = os.environ.get("ALLOWED_HOSTS").split(" ")  # type: ignore
 
 # ======================================================================================================================
 # APPS SETTINGS
@@ -30,10 +32,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'django.contrib.postgres',
+    "django.contrib.postgres",
     # third-party
     "django_extensions",
     # applications
+    "src.apps.users",
 ]
 
 # ======================================================================================================================
@@ -122,6 +125,7 @@ LANGUAGE_CODE = "ru"
 TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
+
 
 USE_TZ = True
 
