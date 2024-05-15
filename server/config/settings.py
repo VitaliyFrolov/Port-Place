@@ -36,6 +36,9 @@ INSTALLED_APPS = [
     "django_extensions",
     # applications
     "server.apps.users",
+    "server.apps.tables",
+    "server.apps.reservations",
+    "server.apps.residents",
 ]
 
 # ======================================================================================================================

@@ -11,7 +11,9 @@ if TYPE_CHECKING:
 
 
 class Reservation(models.Model):
-    table: "models.ForeignKey[Table, Table]" = models.ForeignKey("tables.Table", on_delete=models.SET_NULL, null=True)
+    table: "models.ForeignKey[Table | None, Table | None]" = models.ForeignKey(
+        "tables.Table", on_delete=models.SET_NULL, null=True
+    )
     guest_name: "models.CharField[str, str]" = models.CharField(verbose_name=_("Guest name"), max_length=50, blank=True)
     guest_phone: "models.CharField[str, str]" = models.CharField(
         verbose_name=_("Guest phone"), max_length=20, blank=True
