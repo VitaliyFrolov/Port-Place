@@ -4,9 +4,8 @@ from pathlib import Path
 from django_stubs_ext import monkeypatch
 from dotenv import load_dotenv
 
-monkeypatch()
 load_dotenv()
-
+monkeypatch()
 
 # ======================================================================================================================
 # BASE SETTINGS
@@ -36,7 +35,7 @@ INSTALLED_APPS = [
     # third-party
     "django_extensions",
     # applications
-    "src.apps.users",
+    "server.apps.users",
 ]
 
 # ======================================================================================================================
@@ -57,7 +56,7 @@ MIDDLEWARE = [
 # ROOT URL SETTINGS
 # ======================================================================================================================
 
-ROOT_URLCONF = "src.config.urls"
+ROOT_URLCONF = "server.config.urls"
 
 # ======================================================================================================================
 # TEMPLATES SETTINGS
@@ -83,7 +82,7 @@ TEMPLATES = [
 # WSGI SETTINGS
 # ======================================================================================================================
 
-WSGI_APPLICATION = "src.config.wsgi.application"
+WSGI_APPLICATION = "server.config.wsgi.application"
 
 # ======================================================================================================================
 # DATABASE SETTINGS

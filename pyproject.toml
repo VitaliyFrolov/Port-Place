@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "server"
+name = "Port-Place"
 version = "0.1.0"
 description = ""
 authors = ["Anzor <magometov_a.z@mail.ru>"]
 readme = "README.md"
-packages = [{ include = "src" }]
+packages = [{ include = "server" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -123,7 +123,7 @@ module = ["django_extensions.db.models"]
 ignore_missing_imports = true
 
 [tool.django-stubs]
-django_settings_module = "src.config.settings"
+django_settings_module = "server.config.settings"
 
 [tool.flake8]
 max-line-length = 120

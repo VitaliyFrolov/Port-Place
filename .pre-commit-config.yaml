@@ -19,7 +19,7 @@ repos:
       - id: isort
         name: Format code with isort
         language: system
-        entry: sh -c 'cd server && poetry run isort'
+        entry: poetry run isort server
         pass_filenames: true
         types:
           - python
@@ -27,7 +27,7 @@ repos:
       - id: black
         name: Format code with black
         language: system
-        entry: sh -c 'cd server && poetry run black .'
+        entry: poetry run black server
         pass_filenames: true
         types:
           - python
@@ -35,13 +35,13 @@ repos:
       - id: dotenv-linter
         name: Check .env files
         language: system
-        entry: sh -c 'cd server && poetry run dotenv-linter .env.example'
+        entry: poetry run dotenv-linter .env.example
         pass_filenames: false
 
       - id: ruff
         name: Check code style with Ruff
         language: system
-        entry: sh -c 'cd server && poetry run ruff check .'
+        entry: poetry run ruff check server
         pass_filenames: false
         types:
           - python
@@ -49,7 +49,7 @@ repos:
       - id: mypy
         name: Check static types with mypy
         language: system
-        entry: sh -c 'cd server && poetry run mypy .'
+        entry: poetry run mypy server
         pass_filenames: false
         types_or:
           - python
@@ -58,7 +58,7 @@ repos:
       - id: poetry
         name: Check the validity of the pyproject.toml file
         language: system
-        entry: sh -c 'cd server && poetry run poetry check'
+        entry: poetry run poetry check
         pass_filenames: false
         types:
           - toml

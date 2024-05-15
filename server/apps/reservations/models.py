@@ -1,14 +1,23 @@
+from typing import TYPE_CHECKING
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_stubs_ext.db.models import TypedModelMeta
 
+if TYPE_CHECKING:
+    from datetime import datetime
+
+    from server.apps.tables.models import Table
+
 
 class Reservation(models.Model):
-    table = models.ForeignKey("tables.Table", on_delete=models.SET_NULL, null=True)
-    guest_name = models.CharField(verbose_name=_("Guest name"), max_length=50, blank=True)
-    guest_phone = models.CharField(verbose_name=_("Guest phone"), max_length=20, blank=True)
-    start = models.DateTimeField(verbose_name=_("Start of reservation"))
-    end = models.DateTimeField(verbose_name=_("End of reservation"))
+    table: "models.ForeignKey[Table, Table]" = models.ForeignKey("tables.Table", on_delete=models.SET_NULL, null=True)
+    guest_name: "models.CharField[str, str]" = models.CharField(verbose_name=_("Guest name"), max_length=50, blank=True)
+    guest_phone: "models.CharField[str, str]" = models.CharField(
+        verbose_name=_("Guest phone"), max_length=20, blank=True
+    )
+    start: "models.DateTimeField[datetime, datetime]" = models.DateTimeField(verbose_name=_("Start of reservation"))
+    end: "models.DateTimeField[datetime, datetime]" = models.DateTimeField(verbose_name=_("End of reservation"))
 
     class Meta(TypedModelMeta):
         verbose_name = _("Reservation")
