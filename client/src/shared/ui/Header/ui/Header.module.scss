@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+
+    &__wrapper {
+        margin-bottom: 60px;
+        padding: 25px 10px;
+        border-bottom: 1px solid black;
+        box-shadow: 0 0 10px 0 rgb(0, 0, 0, 40%);
+    }
+}
+
+.navigation {
+    &__list {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+}

@@ -1,4 +1,4 @@
-import MainPage from "@/pages/MainPage/ui/Page";
+import MainPage from '@/pages/MainPage/ui/Page';
 
 export default function HomeRoute() {
   return (
