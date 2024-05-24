@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import styles from './Ticker.module.scss';
 import { List } from '@/shared/ui/List';
+import styles from './Ticker.module.scss';
 
 interface TickerPrpos {
     data: any[];

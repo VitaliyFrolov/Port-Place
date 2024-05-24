@@ -17,5 +17,3 @@ export default function MainPage() {
         </div>
     )
 }
-
-//TODO: при загрузки ImageBlock убирать header по первого скролла

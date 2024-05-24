@@ -6,6 +6,7 @@ export const ImageBlock = () => {
         <div className={styles.image}>
             <Typewriter
                 text='Добро пожаловать!'
+                className={styles.typewriter}
             />
         </div>
     )
