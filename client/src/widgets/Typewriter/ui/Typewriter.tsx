@@ -1,3 +1,4 @@
+'use client'
 import { FC } from 'react';
 import styles from './Typewriter.module.scss';
 import cn from 'classnames';
@@ -19,5 +20,3 @@ export const Typewriter: FC<TypewriterProps> = (props) => {
         </div>
     )
 };
-
-//FIXME: Поправить каретку

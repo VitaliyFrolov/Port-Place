@@ -1,7 +1,7 @@
 import { Ticker } from '@/features/Ticker';
 import { AboutBlock } from './blocks/AboutBlock';
 import { Residents } from './blocks/Residents';
-import { tickerData } from '@/features/Ticker/type/data';
+import { tickerData } from '@/features/Ticker/data/data';
 import styles from './Page.module.scss';
 import { ImageBlock } from './blocks/ImageBlock';
 
