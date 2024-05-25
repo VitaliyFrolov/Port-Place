@@ -2,8 +2,9 @@ import { Ticker } from '@/features/Ticker';
 import { AboutBlock } from './blocks/AboutBlock';
 import { Residents } from './blocks/Residents';
 import { tickerData } from '@/features/Ticker/data/data';
-import styles from './Page.module.scss';
 import { ImageBlock } from './blocks/ImageBlock';
+import styles from './Page.module.scss';
+import { Opacity } from '@/shared/ui/Opacity';
 
 export default function MainPage() {
     return (
@@ -12,7 +13,9 @@ export default function MainPage() {
             <Ticker
                 data={tickerData}
             />
-            <AboutBlock />
+            <Opacity>
+                <AboutBlock />
+            </Opacity>
             <Residents />
         </div>
     )
