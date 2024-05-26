@@ -17,13 +17,13 @@ export const Header = () => {
                 <Logo />
                 <nav className={styles.navigation}>
                     <ul className={styles.navigation__list}>
-                        <li>
-                            О нас
+                        <li className={styles.navigation__item}>
+                            Главная
                         </li>
-                        <li>
-                            Резиденты
+                        <li className={styles.navigation__item}>
+                            Блог
                         </li>
-                        <li>
+                        <li className={styles.navigation__item}>
                             Игровая зона
                         </li>
                     </ul>
