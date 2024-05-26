@@ -13,11 +13,11 @@ monkeypatch()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = "django-insecure-)po9cx#hgi5*=^=f5zhpe-au6!nk0$a)z=ax9o)z83(s^fuhcr"
 
-DEBUG = int(os.getenv("DEBUG"))  # type: ignore
+DEBUG = True
 
-ALLOWED_HOSTS: list[str] = os.environ.get("ALLOWED_HOSTS").split(" ")  # type: ignore
+ALLOWED_HOSTS = []
 
 # ======================================================================================================================
 # APPS SETTINGS
@@ -33,12 +33,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.postgres",
     # third-party
+    "rest_framework",
     "django_extensions",
     # applications
-    "server.apps.users",
-    "server.apps.tables",
-    "server.apps.reservations",
-    "server.apps.residents",
+    "server.apps.tables.apps.TablesConfig",
+    "server.apps.reservations.apps.ReservationsConfig",
+    "server.apps.residents.apps.ResidentsConfig",
 ]
 
 # ======================================================================================================================
@@ -93,18 +93,16 @@ WSGI_APPLICATION = "server.config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": os.getenv("PG_ENGINE"),
-        "NAME": os.getenv("PG_DATABASE"),
-        "USER": os.getenv("PG_USER"),
-        "PASSWORD": os.getenv("PG_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT"),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
 # ======================================================================================================================
 # MORE SETTINGS
 # ======================================================================================================================
+
+API_PREFIX: str = os.environ.get("API_PREFIX", "api/v1")
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -132,6 +130,9 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

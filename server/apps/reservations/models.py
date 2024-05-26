@@ -1,7 +1,6 @@
 from typing import TYPE_CHECKING
 
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 from django_stubs_ext.db.models import TypedModelMeta
 
 if TYPE_CHECKING:
@@ -14,16 +13,14 @@ class Reservation(models.Model):
     table: "models.ForeignKey[Table | None, Table | None]" = models.ForeignKey(
         "tables.Table", on_delete=models.SET_NULL, null=True
     )
-    guest_name: "models.CharField[str, str]" = models.CharField(verbose_name=_("Guest name"), max_length=50, blank=True)
-    guest_phone: "models.CharField[str, str]" = models.CharField(
-        verbose_name=_("Guest phone"), max_length=20, blank=True
-    )
-    start: "models.DateTimeField[datetime, datetime]" = models.DateTimeField(verbose_name=_("Start of reservation"))
-    end: "models.DateTimeField[datetime, datetime]" = models.DateTimeField(verbose_name=_("End of reservation"))
+    guest_name: "models.CharField[str, str]" = models.CharField(verbose_name="Имя гостя", max_length=50, blank=True)
+    guest_phone: "models.CharField[str, str]" = models.CharField(verbose_name="Номер гостя", max_length=20, blank=True)
+    start: "models.DateTimeField[datetime, datetime]" = models.DateTimeField(verbose_name="Начало")
+    end: "models.DateTimeField[datetime, datetime]" = models.DateTimeField(verbose_name="Конец")
 
     class Meta(TypedModelMeta):
-        verbose_name = _("Reservation")
-        verbose_name_plural = _("Reservations")
+        verbose_name = "Бронирование"
+        verbose_name_plural = "Бронирования"
         default_related_name = "reservations"
         constraints = [
             models.CheckConstraint(

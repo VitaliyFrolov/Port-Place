@@ -1,5 +1,7 @@
 FROM python:3.12 as builder
 
+WORKDIR /server
+
 ENV \
     # python:
     PYTHONFAULTHANDLER=1 \
@@ -24,10 +26,10 @@ RUN apt-get update && apt-get upgrade -y \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app/server
+WORKDIR /server
 
 # Copy only requirements, to cache them in docker layer
-COPY ./poetry.lock ./pyproject.toml /app/server/
+COPY ./poetry.lock ./pyproject.toml ./
 
 # Project initialization:
 RUN --mount=type=cache,target=/var/cache/pypoetry \
@@ -36,4 +38,4 @@ RUN --mount=type=cache,target=/var/cache/pypoetry \
     && poetry run pip install -U pip \
     && poetry install --only main --no-interaction --no-ansi
 
-COPY . /app/server
+COPY . .

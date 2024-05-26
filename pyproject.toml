@@ -7,21 +7,23 @@ readme = "README.md"
 packages = [{ include = "server" }]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-django = "^5.0.6"
-django-stubs = {extras = ["compatible-mypy"], version = "^5.0.0"}
+python = "^3.12"
+django = "^5.0.4"
 django-extensions = "^3.2.3"
+djangorestframework = "^3.15.1"
 python-dotenv = "^1.0.1"
+psycopg = { extras = ["binary"], version = "^3.1.19" }
+django-stubs-ext = "^5.0.0"
 
-
-psycopg2 = "^2.9.9"
+pillow = "^10.3.0"
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.24.0"
-ruff = "^0.4.4"
+ruff = "^0.4.2"
 isort = "^5.13.2"
 mypy = "^1.10.0"
 black = "^24.4.2"
-django-types = "^0.19.1"
+django-stubs = { extras = ["compatible-mypy"], version = "^5.0.0" }
+djangorestframework-stubs = { extras = ["compatible-mypy"], version = "^3.15.0" }
 pre-commit = "^3.7.0"
 dotenv-linter = "^0.5.0"
 
@@ -48,53 +50,50 @@ line_length = 120
 
 [tool.ruff]
 
-# 'flake8-bugbear' -> 'lint.flake8-bugbear'\n"
 # set of rules
 lint.select = [
-  "E",  # pycodestyle
-  "F",  # Pyflakes
-  "N",  # pep8-naming
-  "UP", # pyupgrade
-  "BLE", # flake8-blind-except
-  "B",   # flake8-bugbear
-  "A",   # flake8-builtins
-  "C4",  # flake8-comprehensions
-  "DTZ", # flake8-datetimez
-  "DJ",  # flake8-django
-  "EXE", # flake8-executable
-  "FA",  # flake8-future-annotations
-  "ISC", # flake8-implicit-str-concat
-  "G",   # flake8-logging-format
-  "INP", # flake8-logging-format
-  "PIE", # flake8-pie
-  "T20", # flake8-print
-  "PYI", # flake8-pyi
-  "PT",  # flake8-pyi
-  "Q",   # flake8-quotes
-  "SIM", # flake8-simplify
-  "TID", # flake8-tidy-imports
-  "INT", # flake8-gettext
-  "PTH", # flake8-use-pathlib
-  "FIX", # flake8-fixme
-  # Ruff-specific rules
-  "RUF008", # Do not use mutable default values for dataclass attributes
-  "RUF009", # Do not perform function call {name} in dataclass defaults
-  "RUF010", # Use explicit conversion flag
-  # NOTE: RUF011 has been remapped to B035
-  # "RUF011", # Dictionary comprehension uses static key: {key}
-  #  "RUF012",  # Mutable class attributes should be annotated with typing.ClassVar
-  "RUF013", # PEP 484 prohibits implicit Optional
-  "RUF015", # Prefer next({iterable}) over single element slice
-  "RUF016", # Slice in indexed access to type {value_type} uses type {index_type} instead of an integer.
-  "RUF100", # Unused noqa directive
-  "RUF200", # Failed to parse pyproject.toml
-  "FIX002", # Line contains TODO, consider resolving the issue
+    "E", # pycodestyle
+    "F", # Pyflakes
+    "N", # pep8-naming
+    "UP", # pyupgrade
+    "BLE", # flake8-blind-except
+    "B", # flake8-bugbear
+    "A", # flake8-builtins
+    "C4", # flake8-comprehensions
+    "DTZ", # flake8-datetimez
+    "DJ", # flake8-django
+    "EXE", # flake8-executable
+    "FA", # flake8-future-annotations
+    "ISC", # flake8-implicit-str-concat
+    "G", # flake8-logging-format
+    "INP", # flake8-logging-format
+    "PIE", # flake8-pie
+    "T20", # flake8-print
+    "PYI", # flake8-pyi
+    "PT", # flake8-pyi
+    "Q", # flake8-quotes
+    "SIM", # flake8-simplify
+    "TID", # flake8-tidy-imports
+    "INT", # flake8-gettext
+    "PTH", # flake8-use-pathlib
+    "FIX", # flake8-fixme
+    # Ruff-specific rules
+    "RUF008", # Do not use mutable default values for dataclass attributes
+    "RUF009", # Do not perform function call {name} in dataclass defaults
+    "RUF010", # Use explicit conversion flag
+    "RUF013", # PEP 484 prohibits implicit Optional
+    "RUF015", # Prefer next({iterable}) over single element slice
+    "RUF016", # Slice in indexed access to type {value_type} uses type {index_type} instead of an integer.
+    "RUF100", # Unused noqa directive
+    "RUF200", # Failed to parse pyproject.toml
+    "FIX002", # Line contains TODO, consider resolving the issue
 ]
 lint.ignore = [
-  "N806",   # Variable `UpperCase` in function should be lowercase
-  "B010",   # Do not call `setattr` with a constant attribute value
-  "A003",   # variable names that shadow builtins are not allowed
-  "SIM108", # Use ternary operator `var = valie if value else None` instead of `if`-`else`-block
+    "N806", # Variable `UpperCase` in function should be lowercase
+    "B010", # Do not call `setattr` with a constant attribute value
+    "A003", # variable names that shadow builtins are not allowed
+    "SIM108", # Use ternary operator `var = valie if value else None` instead of `if`-`else`-block
+    "FIX002", # Line contains TODO, consider resolving the issue
 ]
 
 fix = true
@@ -116,7 +115,7 @@ disallow_untyped_defs = true
 disallow_untyped_calls = false
 strict = true
 strict_equality = true
-plugins = ["mypy_django_plugin.main"]
+plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
 
 [[tool.mypy.overrides]]
 module = ["django_extensions.db.models"]
