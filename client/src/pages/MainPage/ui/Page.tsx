@@ -16,7 +16,9 @@ export default function MainPage() {
             <Opacity>
                 <AboutBlock />
             </Opacity>
-            <Residents />
+            <Opacity>
+                <Residents />
+            </Opacity>
         </div>
     )
 }

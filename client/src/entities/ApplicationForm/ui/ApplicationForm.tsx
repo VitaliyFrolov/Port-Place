@@ -11,7 +11,7 @@ import { nameValidation } from '@/shared/ui/Input/helpers/validation/nameValidat
 import { errorHandler } from '../helpers/errorHandler';
 import { getInputState } from '../helpers/getInputState';
 import { FormModel } from '../type/FormTypes';
-import styles from './Form.module.scss';
+import styles from './ApplicationForm.module.scss';
 
 interface FormProps {
     model?: FormModel[];
