@@ -6,6 +6,11 @@ body {
     font-size: 22px;
     line-height: 1.4;
     position: relative;
-    background-color: #474A51;
     color: white;
+    background-color: #474A51;
+    //test
+    background-image: radial-gradient(circle at 20% 35%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%),
+                      radial-gradient(circle at 75% 55%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+
+
 }
