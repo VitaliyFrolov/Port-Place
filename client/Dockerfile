@@ -1,4 +1,4 @@
-FROM node:19-alpine
+FROM mirror.gcr.io/library/node:19-alpine
 
 WORKDIR /client
 
