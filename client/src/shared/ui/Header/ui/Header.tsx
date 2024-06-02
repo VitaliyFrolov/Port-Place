@@ -1,7 +1,6 @@
 'use client'
-import { anchorScroller } from '@/shared/helpers/anchorScroller';
+// import { anchorScroller } from '@/shared/helpers/anchorScroller';
 import { useScrollTrigger } from '@/shared/hooks/useScrollTrigger';
-import { useEffect } from 'react';
 import { Container } from '../../Container';
 import { Logo } from '../../Logo';
 import styles from './Header.module.scss';
@@ -9,11 +8,11 @@ import styles from './Header.module.scss';
 export const Header = () => {
     const scrolled = useScrollTrigger();
 
-    useEffect(() => {
-        if (scrolled === true) {
-            anchorScroller('page');
-        }
-    }, [scrolled]);
+    // useEffect(() => {
+    //     if (scrolled === true) {
+    //         anchorScroller('page');
+    //     }
+    // }, [scrolled]);
 
     return (
         <header

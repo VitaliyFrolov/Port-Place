@@ -1,11 +1,11 @@
+import { ApplicationForm } from '@/entities/ApplicationForm';
 import { Container } from '@/shared/ui/Container';
 import { Title } from '@/shared/ui/Title';
-import styles from './Residents.module.scss';
-import { ApplicationForm } from '@/entities/ApplicationForm';
+import styles from './ResidentsBlock.module.scss';
 
-export const Residents = () => {
+export const ResidentsBlock = () => {
     return (
-       <Container>
+        <Container>
             <section className={styles.residents}>
                 <Title
                     tag="h2"
@@ -20,9 +20,9 @@ export const Residents = () => {
                         и амбициозных предпринимателей <br />
                         предоставляющих различные товары и услуги. <br />
                     </p>
-                    <ApplicationForm /> 
+                    <ApplicationForm />
                 </div>
             </section>
-       </Container>
+        </Container>
     )
 };
