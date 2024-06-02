@@ -1,7 +1,24 @@
+import { Ticker } from '@/features/Ticker';
+import { AboutBlock } from './blocks/AboutBlock';
+import { Residents } from './blocks/Residents';
+import { tickerData } from '@/features/Ticker/data/data';
+import { ImageBlock } from './blocks/ImageBlock';
+import styles from './Page.module.scss';
+import { Opacity } from '@/shared/ui/Opacity';
+
 export default function MainPage() {
     return (
-        <section>
-            Hello App!
-        </section>
+        <div className={styles.page}>
+            <ImageBlock />
+            <Ticker
+                data={tickerData}
+            />
+            <Opacity>
+                <AboutBlock />
+            </Opacity>
+            <Opacity>
+                <Residents />
+            </Opacity>
+        </div>
     )
 }

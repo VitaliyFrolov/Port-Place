@@ -1,0 +1,12 @@
+.residents {
+    &__title {
+        padding-bottom: 10px;
+        border-bottom: 1px solid white;
+        margin-bottom: 40px;
+    }
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+    }
+}
