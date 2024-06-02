@@ -1,17 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-export const useScrollTrigger = (index: number) => {
+export const useScrollTrigger = () => {
     const [scrolled, setScroller] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            setScroller(window.scrollY > index);
+            if (!scrolled) {
+                setScroller(true);
+            }
         };
 
         window.addEventListener('scroll', handleScroll);
 
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [scrolled]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return scrolled;
 };
